@@ -1,19 +1,22 @@
-#followed Tutorial at Udemy to get a start on basic movements for a metroidvania. 
+#followed Tutorial at Udemy to get a start on basic movements for a metroidvania and expanded extensively. 
 # https://www.udemy.com/course/learn-godot-4-by-making-a-2d-game
 
 # SOME OF THE CHANGES MADE SINCE:
-# Edited to fix the jumping. 
-# started with the raycast from tutorial, then added better code for wall jumping
+# Edited to fix the jumping. I didn't like the floaty jumps from the example code. 
+# started with the raycast from tutorial, then added better code for wall jumping so that player jumps off wall, instead of climbing.
 # Added feet collision and bounce for player to bounce of blob ememy and spikes
 # Added code for flashing red on damage. 
 # Added code so that blobenemy will damage player on touch
-# Added permanent health upgrades
+# Also added flying enemies. Bats and a special group of the same enemy called "shardbats" that behave as a boss, for now.
+# Added permanent health upgrades. Upgrade will remain when player dies and respawns
 # Added code so activated switches remain active and opened doors remain open on respawn
 # Make sure coins that are collected do not return on respawn
 # Added wall jump as an upgrade. Pick up an item from a chest to gain wall jump
-# And more fixes and additional scripts. 
+# Added a "boss" encounter - shard bats. When player enters the room, they trigger a trap and the doors close. Doors reopen once all shard bats
+#have been defeated. 
 
-#TO DO:
+
+#TO DO NEXT:
 # Fix the shard bat area so that you can't accidentally kill a bat before closing the door and end up trapped - GAME BREAKING
 # Add new hazards
 # Add save points
