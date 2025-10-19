@@ -1,4 +1,4 @@
-#followed Tutorial at Udemy to get a start on basic movements for a metroidvania and expanded extensively. 
+#followed Tutorial at Udemy to get a start on basic movements for a metroidvania (I used their base assets for now) and expanded code extensively. 
 # https://www.udemy.com/course/learn-godot-4-by-making-a-2d-game
 
 # SOME OF THE CHANGES MADE SINCE:
