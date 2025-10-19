@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://ectxpfivihmd"]
+
+[ext_resource type="Texture2D" uid="uid://w2y3huth8h0x" path="res://Sprites/Interactables/Chests.png" id="1_33hyj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxe7i"]
+size = Vector2(28, 20)
+
+[node name="WoodenChest" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_33hyj")
+hframes = 5
+vframes = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8, 6)
+shape = SubResource("RectangleShape2D_nxe7i")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

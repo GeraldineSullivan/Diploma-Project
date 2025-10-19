@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://nunt145ns7ej"]
+
+[ext_resource type="Texture2D" uid="uid://iy050k0ieoxa" path="res://Sprites/Decorative/torch.png" id="1_43k1v"]
+
+[sub_resource type="Animation" id="Animation_6r5xq"]
+resource_name = "active"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_8h2bf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_i82qa"]
+_data = {
+"RESET": SubResource("Animation_8h2bf"),
+"active": SubResource("Animation_6r5xq")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pdoww"]
+size = Vector2(5.04124, 21.6053)
+
+[node name="Torch" type="Area2D"]
+scale = Vector2(1.38855, 1.38855)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_43k1v")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_i82qa")
+}
+autoplay = "active"
+speed_scale = 0.5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.360089, 4.32106)
+shape = SubResource("RectangleShape2D_pdoww")
+disabled = true

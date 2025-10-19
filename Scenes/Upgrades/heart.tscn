@@ -1,0 +1,71 @@
+[gd_scene load_steps=8 format=3 uid="uid://bbem3mjg6redg"]
+
+[ext_resource type="Script" path="res://Scripts/heart.gd" id="1_3la8t"]
+[ext_resource type="Texture2D" uid="uid://b46a6q82ewido" path="res://Sprites/Interactables/HeartSpriteSheet2.png" id="2_hp3s5"]
+[ext_resource type="AudioStream" uid="uid://ct5lwmf6mvd8x" path="res://Audio/CollectHeart.wav" id="3_y5uha"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iq6yv"]
+radius = 22.8378
+
+[sub_resource type="Animation" id="Animation_0dg56"]
+resource_name = "active"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_q0idw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_du5wh"]
+_data = {
+"RESET": SubResource("Animation_q0idw"),
+"active": SubResource("Animation_0dg56")
+}
+
+[node name="Heart" type="Area2D" groups=["Hearts"]]
+scale = Vector2(0.841833, 0.841833)
+script = ExtResource("1_3la8t")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.38159, 1.38159)
+texture = ExtResource("2_hp3s5")
+hframes = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
+scale = Vector2(0.441782, 0.445594)
+shape = SubResource("CircleShape2D_iq6yv")
+
+[node name="HeartChime" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_y5uha")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_du5wh")
+}
+autoplay = "active"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

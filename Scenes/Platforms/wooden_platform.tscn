@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dehkukl7dppd6"]
+
+[ext_resource type="Texture2D" uid="uid://5bwr5u3wh6eg" path="res://Sprites/Ground/wooden.png" id="1_laqv4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_er0j6"]
+size = Vector2(92.8164, 15)
+
+[node name="WoodenPlatform" type="StaticBody2D"]
+modulate = Color(0.792157, 1, 1, 1)
+rotation = 0.000327629
+scale = Vector2(0.870298, 0.678175)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 17)
+scale = Vector2(1, 0.46875)
+texture = ExtResource("1_laqv4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.59181, 17.4985)
+shape = SubResource("RectangleShape2D_er0j6")
+one_way_collision = true

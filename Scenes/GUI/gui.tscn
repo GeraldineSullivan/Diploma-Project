@@ -1,0 +1,94 @@
+[gd_scene load_steps=8 format=3 uid="uid://dxl2invs0v2wr"]
+
+[ext_resource type="Script" path="res://Scripts/GUI.gd" id="1_b4pie"]
+[ext_resource type="Texture2D" uid="uid://ctbkbpj727v65" path="res://Sprites/UI/PlayerHead1.png" id="2_h3jq3"]
+[ext_resource type="Texture2D" uid="uid://bf8j0wvao24qj" path="res://Sprites/Interactables/coin.png" id="3_m7xja"]
+[ext_resource type="Texture2D" uid="uid://bq2a23aygkxag" path="res://Sprites/UI/HeartSpriteSheet.png" id="4_1v3m4"]
+
+[sub_resource type="Animation" id="Animation_p1g4s"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_jcnit"]
+resource_name = "coin"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 1, 2, 3, 4, 5, 6, 7, 7, 7, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g42fk"]
+_data = {
+"RESET": SubResource("Animation_p1g4s"),
+"coin": SubResource("Animation_jcnit")
+}
+
+[node name="CenterContainer" type="CenterContainer"]
+offset_right = 659.0
+offset_bottom = 40.0
+
+[node name="GUI" type="CanvasLayer" parent="."]
+scale = Vector2(2, 2)
+transform = Transform2D(2, 0, 0, 2, 0, 0)
+script = ExtResource("1_b4pie")
+metadata/_edit_horizontal_guides_ = [17.0, -97.0]
+
+[node name="PlayerLife" type="Sprite2D" parent="GUI"]
+texture_filter = 1
+position = Vector2(15.8871, 10.5)
+scale = Vector2(0.709678, 0.709678)
+texture = ExtResource("2_h3jq3")
+
+[node name="CoinLogo" type="Sprite2D" parent="GUI"]
+texture_filter = 1
+position = Vector2(434.5, 12.5)
+scale = Vector2(0.14886, 0.144258)
+texture = ExtResource("3_m7xja")
+hframes = 8
+frame = 1
+
+[node name="anim" type="AnimationPlayer" parent="GUI/CoinLogo"]
+libraries = {
+"": SubResource("AnimationLibrary_g42fk")
+}
+autoplay = "coin"
+
+[node name="Heart" type="Sprite2D" parent="GUI"]
+position = Vector2(35.0329, 14.9635)
+scale = Vector2(0.933388, 0.926281)
+texture = ExtResource("4_1v3m4")
+hframes = 5
+
+[node name="Coins" type="Label" parent="GUI"]
+offset_left = 443.5
+offset_top = 1.5
+offset_right = 472.5
+offset_bottom = 19.5
+scale = Vector2(0.959715, 1.11053)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 1
+theme_override_font_sizes/font_size = 13
+text = "1"
+vertical_alignment = 1

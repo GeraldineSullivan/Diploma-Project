@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://52tyx61aukhv"]
+
+[ext_resource type="Script" path="res://Scripts/boss_door_trap_1.gd" id="1_q4o1o"]
+[ext_resource type="AudioStream" uid="uid://d2jynorvpa2k0" path="res://Audio/Open.wav" id="2_hlcde"]
+[ext_resource type="AudioStream" uid="uid://c46sgcwxkhaty" path="res://Audio/Close.wav" id="3_l3wym"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8abxf"]
+size = Vector2(20, 78.2605)
+
+[node name="BossDoorTrap1" type="Area2D"]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_q4o1o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(779.569, 523.552)
+shape = SubResource("RectangleShape2D_8abxf")
+debug_color = Color(0.574166, 0.432009, 0.267236, 0.42)
+
+[node name="OpenDoor" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_hlcde")
+
+[node name="CloseDoor" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_l3wym")
+volume_db = 10.0

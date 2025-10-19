@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://nr5aqx4ymoap"]
+
+[ext_resource type="Script" path="res://Scripts/food.gd" id="1_7pwor"]
+[ext_resource type="Texture2D" uid="uid://dun8xxbkeofa4" path="res://Sprites/Interactables/apples.png" id="1_x83rb"]
+[ext_resource type="AudioStream" uid="uid://btg0yj1jjyi5f" path="res://Audio/nom.wav" id="3_64v34"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_muvab"]
+radius = 94.1116
+
+[node name="Food" type="Area2D"]
+scale = Vector2(0.670818, 0.670818)
+script = ExtResource("1_7pwor")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.972549, 1, 1, 1)
+texture_filter = 1
+scale = Vector2(1.0809, 1.0809)
+texture = ExtResource("1_x83rb")
+offset = Vector2(2.08165e-12, 2.08165e-12)
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -9.53674e-07)
+scale = Vector2(-0.114275, -0.114057)
+shape = SubResource("CircleShape2D_muvab")
+
+[node name="Nom" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_64v34")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,139 @@
+[gd_scene load_steps=10 format=3 uid="uid://doq11heovv57e"]
+
+[ext_resource type="Texture2D" uid="uid://5ssrr3p4j4o2" path="res://Sprites/Interactables/Pots.png" id="1_k26dw"]
+[ext_resource type="Script" path="res://Scripts/pot.gd" id="1_ktq88"]
+[ext_resource type="AudioStream" uid="uid://b6ygop06ppmq5" path="res://Audio/breakVase.wav" id="3_jfaou"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_brgod"]
+size = Vector2(16, 22.9148)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wtj58"]
+radius = 9.0
+height = 24.0
+
+[sub_resource type="Animation" id="Animation_by8s0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_uwqay"]
+resource_name = "potactive"
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
+
+[sub_resource type="Animation" id="Animation_nob4o"]
+resource_name = "potbreak"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [8, 9, 10, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8aqhp"]
+_data = {
+"RESET": SubResource("Animation_by8s0"),
+"potactive": SubResource("Animation_uwqay"),
+"potbreak": SubResource("Animation_nob4o")
+}
+
+[node name="Pot" type="StaticBody2D"]
+scale = Vector2(0.867704, 0.867704)
+collision_layer = 16
+collision_mask = 17
+script = ExtResource("1_ktq88")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.00251, 1)
+texture = ExtResource("1_k26dw")
+hframes = 4
+vframes = 4
+frame = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4.5426)
+shape = SubResource("RectangleShape2D_brgod")
+
+[node name="Hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 4)
+shape = SubResource("CapsuleShape2D_wtj58")
+debug_color = Color(0.725976, 0.399229, 0.677987, 0.42)
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8aqhp")
+}
+autoplay = "potactive"
+
+[node name="VaseBreak" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_jfaou")
+volume_db = -10.0
+
+[connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

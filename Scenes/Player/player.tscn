@@ -1,0 +1,261 @@
+[gd_scene load_steps=18 format=3 uid="uid://bqkibf4ns8lhr"]
+
+[ext_resource type="Texture2D" uid="uid://djawxgk443rls" path="res://Sprites/Player2.png" id="1_md2t0"]
+[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_wpmxk"]
+[ext_resource type="AudioStream" uid="uid://ddpabqgq0fa78" path="res://Audio/SwordSwipe.wav" id="3_1qo1k"]
+[ext_resource type="AudioStream" uid="uid://buujo51sex8p5" path="res://Audio/blobbounce.mp3" id="4_lnhck"]
+[ext_resource type="AudioStream" uid="uid://cpkd7rat25tx3" path="res://Audio/ouchie.wav" id="5_eroy1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rdp7p"]
+size = Vector2(16.067, 25.4343)
+
+[sub_resource type="Animation" id="Animation_b8pq6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_qt118"]
+resource_name = "dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [20, 21, 22, 23, 24]
+}
+
+[sub_resource type="Animation" id="Animation_2a13r"]
+resource_name = "fall"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [19]
+}
+
+[sub_resource type="Animation" id="Animation_24dmb"]
+resource_name = "Idle"
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_axlb5"]
+resource_name = "jump"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [18]
+}
+
+[sub_resource type="Animation" id="Animation_2ujhy"]
+resource_name = "sword"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [14, 15, 16, 17]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sword/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [true, false, false, true]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"OnStateFinished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_nhov0"]
+resource_name = "Walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10, 11, 12, 13]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nljkv"]
+_data = {
+"RESET": SubResource("Animation_b8pq6"),
+"dead": SubResource("Animation_qt118"),
+"fall": SubResource("Animation_2a13r"),
+"idle": SubResource("Animation_24dmb"),
+"jump": SubResource("Animation_axlb5"),
+"sword": SubResource("Animation_2ujhy"),
+"walk": SubResource("Animation_nhov0")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g456x"]
+size = Vector2(20, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pu1t6"]
+size = Vector2(17.0378, 25.3461)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_odv42"]
+size = Vector2(12.1005, 3.08685)
+
+[node name="Player" type="CharacterBody2D"]
+scale = Vector2(0.683551, 0.66988)
+collision_mask = 19
+script = ExtResource("1_wpmxk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
+texture_filter = 1
+scale = Vector2(0.936955, 0.936955)
+texture = ExtResource("1_md2t0")
+hframes = 5
+vframes = 5
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.0334902, 2.71715)
+shape = SubResource("RectangleShape2D_rdp7p")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nljkv")
+}
+
+[node name="Sword" type="Area2D" parent="."]
+position = Vector2(24, 0)
+collision_layer = 9
+collision_mask = 49
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sword"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+shape = SubResource("RectangleShape2D_g456x")
+debug_color = Color(0.902485, 0.203229, 0.583386, 0.42)
+
+[node name="hitbox" type="Area2D" parent="."]
+scale = Vector2(0.929836, 1.17613)
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+position = Vector2(2.81335e-07, -0.634626)
+scale = Vector2(1.10813, 0.951458)
+shape = SubResource("RectangleShape2D_pu1t6")
+one_way_collision_margin = 0.0
+debug_color = Color(0.718857, 0.476795, 0.165482, 0.42)
+
+[node name="feet" type="Area2D" parent="."]
+collision_mask = 17
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="feet"]
+position = Vector2(-3.3057e-07, 15.9488)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_odv42")
+
+[node name="RightCast" type="RayCast2D" parent="."]
+position = Vector2(-1.00837, -10.2895)
+target_position = Vector2(13, 2.08165e-12)
+
+[node name="LeftCast" type="RayCast2D" parent="."]
+position = Vector2(-1.00837, -10.2895)
+target_position = Vector2(-13, 2.08165e-12)
+
+[node name="TopCast" type="RayCast2D" parent="."]
+position = Vector2(-1.90735e-06, -11.3185)
+target_position = Vector2(2.08165e-12, -13)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="Whoosh" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_1qo1k")
+
+[node name="Bounce" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_lnhck")
+
+[node name="Ouchie" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_eroy1")
+volume_db = -5.0
+
+[connection signal="body_entered" from="Sword" to="Sword" method="_on_body_entered"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
+[connection signal="body_entered" from="feet" to="." method="_on_feet_body_entered"]

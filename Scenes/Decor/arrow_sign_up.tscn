@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c2ngc56ktsy8a"]
+
+[ext_resource type="Texture2D" uid="uid://sttshxxdngq7" path="res://Sprites/Decorative/sign.png" id="1_1pl2m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yogpj"]
+size = Vector2(27, 15)
+
+[node name="ArrowSignUp" type="Area2D"]
+scale = Vector2(0.613817, 0.613817)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_1pl2m")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -6.5)
+shape = SubResource("RectangleShape2D_yogpj")
+disabled = true

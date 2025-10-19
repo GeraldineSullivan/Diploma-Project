@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://d68c2tvx5twc"]
+
+[ext_resource type="Texture2D" uid="uid://b5eway0rdre2k" path="res://Sprites/Ground/Rocks.png" id="1_f0qft"]
+
+[node name="Rockfall" type="StaticBody2D"]
+scale = Vector2(1.45494, 1.45494)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_f0qft")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-38, 15, -35, 4, -34, -1, -30, -3, -28, 0, -25, -9, -18, -11, -10, -8, -5, -15, 5, -16, 10, -11, 14, -10, 17, -3, 25, -4, 30, -1, 30, 4, 37, 7, 41, 15)
