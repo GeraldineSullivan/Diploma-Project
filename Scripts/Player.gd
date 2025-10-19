@@ -13,7 +13,8 @@
 # Make sure coins that are collected do not return on respawn
 # Added wall jump as an upgrade. Pick up an item from a chest to gain wall jump
 # Added a "boss" encounter - shard bats. When player enters the room, they trigger a trap and the doors close. Doors reopen once all shard bats
-#have been defeated. 
+# have been defeated. 
+# And more fixes and additional scripts. 
 
 
 #TO DO NEXT:
